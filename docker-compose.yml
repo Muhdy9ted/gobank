@@ -1,0 +1,28 @@
+services:
+  postgres:
+    image: postgres:13
+    container_name: go-bank-postgres
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin@123
+      POSTGRES_DB: go-bank-postgres
+      SSL_MODE: disable
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U admin"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+    networks:
+      - go-bank-network
+
+volumes:
+  pgdata:
+
+networks:
+  go-bank-network:
+    driver: bridge
