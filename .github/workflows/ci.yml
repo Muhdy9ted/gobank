@@ -16,7 +16,7 @@ jobs:
         image: postgres:13
         env:
           POSTGRES_USER: admin
-          POSTGRES_PASSWORD: admin%40123
+          POSTGRES_PASSWORD: admin@123
           POSTGRES_DB: go-bank-postgres
         ports:
           - 5432:5432
